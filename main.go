@@ -7,7 +7,7 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/dipeshdulal/event-scheduling/customevents"
+	"github.com/brezbxn/schedulerongo/customevents"
 )
 
 var eventListeners = Listeners{

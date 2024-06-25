@@ -17,18 +17,19 @@ import (
 		return db
 	}
 */
-
 func initDBConnection() *sql.DB {
 	conn := os.Getenv("POSTGRES_CONNECTION")
-	if conn == "" {
+	password := os.Getenv("POSTGRES_PASSWORD")
+	if conn == "" || password == "" {
 		conn = "postgres"
 	}
-	_, err := sql.Open(conn, conn)
+	db, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
-	return initDBConnection()
+	return db
 }
+
 func seedDB(db *sql.DB) error {
 	log.Print("Seeding database with table. . .")
 	_, err := db.Exec(`
